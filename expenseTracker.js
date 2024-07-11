@@ -3,31 +3,58 @@ let totalExpense = 0;
 let totalBalance = 0;
 
 const expenseList = [
-  {
-    expenseDescription: "Test",
-    expenseType: "income",
-    amount: 0,
-    totalIncome,
-    totalExpense,
-    totalBalance,
-  },
-  {
-    expenseDescription: "Test",
-    expenseType: "expense",
-    amount: 50,
-    totalIncome,
-    totalExpense,
-    totalBalance,
-  },
+  
 ];
 
-// renderExpenseList()
+renderExpenseList();
 
 function renderExpenseList() {
   let expenseListHTML = "";
 
-  expenseList.forEach();
+  expenseList.forEach(function (expenseObject) {
+    const {
+      expenseDescription,
+      expenseType,
+      amount,
+      totalIncome,
+      totalExpense,
+      totalBalance,
+    } = expenseObject;
+
+    const html = `
+        <div>${expenseDescription}</div>
+        <div>${expenseType}</div>
+        <div>${amount}</div>
+        <div>${totalIncome}</div>
+        <div>${totalExpense}</div>
+        <div>${totalBalance}</div>
+        <button class="delete-expense-button js-delete-expense-button">
+            Delete 
+        </button>
+    `;
+
+    expenseListHTML += html;
+  });
+
+  document.querySelector(".js-expense-list").innerHTML = expenseListHTML;
+
+  document
+    .querySelectorAll(".js-delete-expense-button")
+    .forEach((deleteButton, index) => {
+      deleteButton.addEventListener("click", () => {
+        expenseList.splice(index, 1);
+        renderExpenseList();
+      });
+    });
+
+  console.log(expenseListHTML);
 }
+
+document
+  .querySelector(".js-add-expense-button")
+  .addEventListener("click", () => {
+    addExpense();
+  });
 
 function addExpense() {
   const expenseDescriptionElement = document.querySelector(".js-expense-input");
@@ -43,6 +70,7 @@ function addExpense() {
   if (selectedExpenseType === "income") {
     totalIncome += Number(expenseAmount);
     totalBalance += totalIncome;
+
     expenseList.push({
       expenseDescription: expenseDescription,
       expenseType: selectedExpenseType,
@@ -54,15 +82,22 @@ function addExpense() {
   } else if (selectedExpenseType === "expense") {
     totalExpense += Number(expenseAmount);
     totalBalance -= totalExpense;
+
     expenseList.push({
-        expenseDescription: expenseDescription,
-        expenseType: selectedExpenseType,
-        amount: expenseAmount,
-        totalIncome: totalIncome,
-        totalExpense: totalExpense,
-        totalBalance: totalBalance,
-      });
+      expenseDescription: expenseDescription,
+      expenseType: selectedExpenseType,
+      amount: expenseAmount,
+      totalIncome: totalIncome,
+      totalExpense: totalExpense,
+      totalBalance: totalBalance,
+    });
   }
+
+  expenseDescriptionElement.value = "";
+  expenseAmountElement.value = ""
+
+
+  renderExpenseList();
 
   console.log("expenseDescription: ", expenseDescription);
   console.log("expenseAmount: ", expenseAmount);
@@ -72,9 +107,3 @@ function addExpense() {
   console.log("totalBalance: ", totalBalance);
   console.log("expenseList: ", expenseList);
 }
-
-document
-  .querySelector(".js-add-expense-button")
-  .addEventListener("click", () => {
-    addExpense();
-  });
