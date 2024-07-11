@@ -1,6 +1,24 @@
+let totalIncome = 0;
+let totalExpense = 0;
+let totalBalance = 0;
+
 const expenseList = [
-  { expense: "Test", expenseType: "income", amount: 100 },
-  { expense: "Test", expenseType: "income", amount: 200 },
+  {
+    expenseDescription: "Test",
+    expenseType: "income",
+    amount: 0,
+    totalIncome,
+    totalExpense,
+    totalBalance,
+  },
+  {
+    expenseDescription: "Test",
+    expenseType: "expense",
+    amount: 50,
+    totalIncome,
+    totalExpense,
+    totalBalance,
+  },
 ];
 
 // renderExpenseList()
@@ -18,6 +36,45 @@ function addExpense() {
   );
   const selectElement = document.querySelector("#select1");
 
-  const description = expenseDescriptionElement.ariaValueMax;
-  
+  const expenseDescription = expenseDescriptionElement.value;
+  const expenseAmount = expenseAmountElement.value;
+  const selectedExpenseType = selectElement.value;
+
+  if (selectedExpenseType === "income") {
+    totalIncome += Number(expenseAmount);
+    totalBalance += totalIncome;
+    expenseList.push({
+      expenseDescription: expenseDescription,
+      expenseType: selectedExpenseType,
+      amount: expenseAmount,
+      totalIncome: totalIncome,
+      totalExpense: totalExpense,
+      totalBalance: totalBalance,
+    });
+  } else if (selectedExpenseType === "expense") {
+    totalExpense += Number(expenseAmount);
+    totalBalance -= totalExpense;
+    expenseList.push({
+        expenseDescription: expenseDescription,
+        expenseType: selectedExpenseType,
+        amount: expenseAmount,
+        totalIncome: totalIncome,
+        totalExpense: totalExpense,
+        totalBalance: totalBalance,
+      });
+  }
+
+  console.log("expenseDescription: ", expenseDescription);
+  console.log("expenseAmount: ", expenseAmount);
+  console.log("selectedExpenseType: ", selectedExpenseType);
+  console.log("totalIncome: ", totalIncome);
+  console.log("totalExpense: ", totalExpense);
+  console.log("totalBalance: ", totalBalance);
+  console.log("expenseList: ", expenseList);
 }
+
+document
+  .querySelector(".js-add-expense-button")
+  .addEventListener("click", () => {
+    addExpense();
+  });
