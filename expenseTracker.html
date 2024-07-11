@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="expenseTracker.css" />
+  </head>
+  <body>
+    <p>Expense Tracker</p>
+    <div class="expense-tracker-input-grid">
+      <input
+        type="text"
+        placeholder="Add expense description"
+        class="js-expense-input expense-input"
+      />
+      <input
+        type="text"
+        placeholder="Add expense amount"
+        class="js-expense-amount-input expense-amount-input"
+      />
+      <span> Income or Expense:
+        <select id="select1">
+            <option value="income">Income</option>
+            <option value="expense">Expense</option>
+        </select>
+
+    </span>
+      <button class="add-expense-button js-add-expense-button">
+        Add Expense
+      </button>
+    </div>
+
+    <div class="js-expense-list expense-grid"></div>
+    <script src="expenseTracker.js"></script>
+  </body>
+</html>
