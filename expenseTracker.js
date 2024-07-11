@@ -2,9 +2,18 @@ let totalIncome = 0;
 let totalExpense = 0;
 let totalBalance = 0;
 
-const expenseList = [
-  
-];
+const expenseList = JSON.parse(localStorage.getItem("expenses")) || [];
+
+const expenseTitleHTML = `
+        <div>Description</div>
+        <div>Type</div>
+        <div>Amount</div>
+        <div>Total Income</div>
+        <div>Total Expense</div>
+        <div>Total Balance</div>
+    `;
+
+document.querySelector(".expense-title-grid").innerHTML = expenseTitleHTML;
 
 renderExpenseList();
 
@@ -43,11 +52,10 @@ function renderExpenseList() {
     .forEach((deleteButton, index) => {
       deleteButton.addEventListener("click", () => {
         expenseList.splice(index, 1);
+        localStorage.setItem("expenses", JSON.stringify(expenseList));
         renderExpenseList();
       });
     });
-
-  console.log(expenseListHTML);
 }
 
 document
@@ -94,16 +102,9 @@ function addExpense() {
   }
 
   expenseDescriptionElement.value = "";
-  expenseAmountElement.value = ""
+  expenseAmountElement.value = "";
 
+  localStorage.setItem("expenses", JSON.stringify(expenseList));
 
   renderExpenseList();
-
-  console.log("expenseDescription: ", expenseDescription);
-  console.log("expenseAmount: ", expenseAmount);
-  console.log("selectedExpenseType: ", selectedExpenseType);
-  console.log("totalIncome: ", totalIncome);
-  console.log("totalExpense: ", totalExpense);
-  console.log("totalBalance: ", totalBalance);
-  console.log("expenseList: ", expenseList);
 }

@@ -8,10 +8,43 @@ body {
   grid-template-columns: 150px 150px 150px 100px 50px 50px 100px;
   column-gap: 10px;
   row-gap: 10px;
+  font-size: 13px;
+  align-items: center;
+}
+
+.expense-title-grid {
+  display: grid;
+  grid-template-columns: 150px 150px 150px 100px 50px 50px 100px;
+  column-gap: 10px;
+  row-gap: 10px;
+  font-size: 13px;
   align-items: center;
 }
 
 .expense-tracker-input-grid {
-    margin-bottom: 10px;
-    align-items: stretch;
+  margin-bottom: 10px;
+  align-items: stretch;
+}
+
+.add-expense-button {
+  background-color: green;
+  color: white;
+  border: none;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.delete-expense-button {
+  background-color: darkred;
+  color: white;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+  padding: 10px 0 10px 0;
+}
+
+.expense-input,
+.expense-amount-input {
+  font-size: 12px;
+  padding: 6px;
 }
