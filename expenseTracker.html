@@ -7,32 +7,35 @@
     <link rel="stylesheet" href="expenseTracker.css" />
   </head>
   <body>
-    <p>Expense Tracker</p>
-    <div class="expense-tracker-input-grid">
-      <input
-        type="text"
-        placeholder="Add expense description"
-        class="js-expense-input expense-input"
-      />
-      <input
-        type="text"
-        placeholder="Add expense amount"
-        class="js-expense-amount-input expense-amount-input"
-      />
-      <span> Income or Expense:
-        <select id="select1">
+    <div class="container">
+      <h2>Expense Tracker</h2>
+      <div class="expense-tracker-input-grid">
+        <input
+          type="text"
+          placeholder="Add description"
+          class="js-expense-input expense-input"
+        />
+        <input
+          type="text"
+          placeholder="Add amount"
+          class="js-expense-amount-input expense-amount-input"
+        />
+        <span>
+          Income or Expense:
+          <select id="select1">
             <option value="income">Income</option>
             <option value="expense">Expense</option>
-        </select>
+          </select>
+        </span>
+        <button class="add-expense-button js-add-expense-button">
+          Add Transaction
+        </button>
+      </div>
 
-    </span>
-      <button class="add-expense-button js-add-expense-button" >
-        Add Expense
-      </button>
+      <div class="expense-title-grid"></div>
+      <div class="js-expense-list expense-grid"></div>
     </div>
-
-    <div class="expense-title-grid"></div>
-    <div class="js-expense-list expense-grid"></div>
+    
     <script src="expenseTracker.js"></script>
   </body>
 </html>
