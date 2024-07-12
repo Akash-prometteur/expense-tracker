@@ -41,6 +41,22 @@ function renderExpenseList() {
             Delete 
         </button>
     `;
+    const tableHTML = `
+      <table id="expense-table">
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Type</th>
+                <th>Amount</th>
+                <th>Total Income</th>
+                <th>Total Expense</th>
+                <th>Total Balance</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        
+      </table>
+    `;
 
     expenseListHTML += html;
   });
@@ -75,31 +91,29 @@ function addExpense() {
   const expenseAmount = expenseAmountElement.value;
   const selectedExpenseType = selectElement.value;
 
+  const checkBalace = Number(expenseAmount) > Number(totalBalance);
+  
   if (selectedExpenseType === "income") {
     totalIncome += Number(expenseAmount);
-    totalBalance += totalIncome;
-
-    expenseList.push({
-      expenseDescription: expenseDescription,
-      expenseType: selectedExpenseType,
-      amount: expenseAmount,
-      totalIncome: totalIncome,
-      totalExpense: totalExpense,
-      totalBalance: totalBalance,
-    });
+    totalBalance += Number(expenseAmount);
   } else if (selectedExpenseType === "expense") {
-    totalExpense += Number(expenseAmount);
-    totalBalance -= totalExpense;
+    if (checkBalace) {
+      document.querySelector('.error-message').innerHTML = "Insufficient balance."
+      return;
+    }
 
-    expenseList.push({
-      expenseDescription: expenseDescription,
-      expenseType: selectedExpenseType,
-      amount: expenseAmount,
-      totalIncome: totalIncome,
-      totalExpense: totalExpense,
-      totalBalance: totalBalance,
-    });
+    totalExpense += Number(expenseAmount);
+    totalBalance -= Number(expenseAmount);
   }
+
+  expenseList.push({
+    expenseDescription: expenseDescription,
+    expenseType: selectedExpenseType,
+    amount: expenseAmount,
+    totalIncome: totalIncome,
+    totalExpense: totalExpense,
+    totalBalance: totalBalance,
+  });
 
   expenseDescriptionElement.value = "";
   expenseAmountElement.value = "";

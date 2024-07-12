@@ -2,23 +2,53 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.expense-tracker-input-grid,
-.expense-grid {
+h2 {
+  text-align: center;
+}
+
+.container {
+  background-color: #fff;
+}
+
+.expense-tracker-input-grid {
   display: grid;
   grid-template-columns: 150px 150px 150px 100px 50px 50px 100px;
+  column-gap: 10px;
+  row-gap: 10px;
+  font-size: 13px;
+  align-items: center;
+  justify-content: center;
+}
+
+.expense-title-grid {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 120px 120px 70px 100px 150px 100px 100px;
   column-gap: 10px;
   row-gap: 10px;
   font-size: 13px;
   align-items: center;
 }
 
-.expense-title-grid {
+.expense-grid {
   display: grid;
-  grid-template-columns: 150px 150px 150px 100px 50px 50px 100px;
+  grid-template-columns: 120px 120px 70px 100px 150px 100px 100px;
+  justify-content: center;
   column-gap: 10px;
   row-gap: 10px;
   font-size: 13px;
   align-items: center;
+}
+
+.expense-title-grid > div {
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.expense-grid > div {
+  border: 1px solid black;
+  padding: 10px;
+  margin-top: 8px;
 }
 
 .expense-tracker-input-grid {
@@ -32,6 +62,7 @@ body {
   border: none;
   font-size: 13px;
   cursor: pointer;
+  border-radius: 0.6em;
 }
 
 .delete-expense-button {
@@ -41,10 +72,20 @@ body {
   font-size: 15px;
   cursor: pointer;
   padding: 10px 0 10px 0;
+  border-radius: 0.6em;
 }
 
 .expense-input,
 .expense-amount-input {
-  font-size: 12px;
-  padding: 6px;
+  padding: 0.5em 0.75em;
+  border-radius: 0.6em;
+  border: 1px solid rgb(150, 150, 150);
+  color: rgb(50, 50, 80);
+  font-size: 1rem;
+}
+
+#select1 {
+  width: 150px;
+  height: 40px;
+  border-radius: 0.6em;
 }
